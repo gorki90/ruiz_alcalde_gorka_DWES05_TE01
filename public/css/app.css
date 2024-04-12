@@ -1,0 +1,20 @@
+body{
+    background: black;
+    color: white;
+}
+
+h1{
+    text-align: center;
+}
+
+ol, a{
+    list-style: none;
+    color: white;
+    text-decoration: none;
+}
+
+ol, a:hover{
+    list-style: none;
+    color: purple;
+    text-decoration: none;
+}
