@@ -55,7 +55,7 @@ public function crearbuild(){
     }
 
     }
-
+//función para mostrar todas las builds registradas
     public function builds(){
         $builds=Build::all();
         if($builds){
@@ -67,7 +67,7 @@ public function crearbuild(){
             echo "No hay ninguna Build";
         }
     }
-
+//función para mostrar las builds por id
     public function buildsById($id){
         $build=DB::table("builds")->where("id_build",$id)->get();
         
@@ -80,7 +80,7 @@ public function crearbuild(){
     }
 
     }
-
+//Función con inner joint para mostar las builds de un autor concreto
     public function autores($id){
         $autor=Build::select('builds.*')
         ->join('autors', 'builds.autor_id', '=', 'autors.autor_id')
@@ -95,19 +95,19 @@ public function crearbuild(){
         }
 
     }
-
+//Función para redirigir a la vista de crear
     public function crear(){
         return view('crear');
     }
-
+//Función para redirigir a la vista de modificar
     public function actualizar($id){
         return view('modificar', compact("id"));
     }
-
+//Función para redirigir a la vista de eliminar
     public function eliminar($id){
         return view('eliminar', compact("id"));
     }
-
+//Función para la petición de post para crear una build nueva
     public function createBuild(Request $request){
        
         $datos=$request->all();
@@ -128,17 +128,11 @@ public function crearbuild(){
         $build->save();
         echo Codigos::created();
     }
-
+//Función para la petición put y modificar uno o varios datos de una build existente
     public function updateBuild(Request $request, $id){
     
-
-   
     $datos = $request->all();
-
-    
     $build = Build::where('id_build', $id)->first();
-
-    
     if (!$build) {
         echo Codigos::notFound();
         echo "El id no existe";
@@ -164,7 +158,7 @@ public function crearbuild(){
     
 
     }
-
+//Función para la petición delete y eliminar una build existente
     public function deleteBuild($id){
 
     $build = Build::find($id);
