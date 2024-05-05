@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
 
 
 
@@ -172,8 +173,61 @@ public function crearbuild(){
         echo'Build eliminada correctamente';
     }
 
-    
-
     }
+
+public function verAutores(){
+    $url = 'http://localhost:8080/api/usuarios';
+    $response = Http::get($url);
+
+    if ($response->successful()) {
+        return $response->json();
+    } else {
+        return response()->json(['error' => 'Error al obtener usuarios del microservicio'], $response->status());
+    }
+}
+
+public function verAutorId($id){
+    $url = "http://localhost:8080/api/usuarios/{$id}";
+    $response = Http::get($url);
+
+    if ($response->successful()) {
+        return $response->json();
+    } else {
+        return response()->json(['error' => 'Usuario no encontrado en el microservicio'], $response->status());
+    }
+}
+
+public function crearAutor(Request $request){
+    $url = 'http://localhost:8080/api/usuarios/crear';
+    $response = Http::post($url, $request->all());
+
+    if ($response->successful()) {
+        return $response->json();
+    } else {
+        return response()->json(['error' => 'Error al crear usuario en el microservicio'], $response->status());
+    }
+}
+
+public function modificarAutor(Request $request, $id){
+    $url = "http://localhost:8080/api/usuarios/modificar/{$id}";
+    $response = Http::put($url, $request->all());
+
+    if ($response->successful()) {
+        return $response->json();
+    } else {
+        return response()->json(['error' => 'Error al actualizar usuario en el microservicio'], $response->status());
+    }
+}
+
+public function eliminarAutor($id){
+    $url = "http://localhost:8080/api/usuarios/eliminar/{$id}";
+    $response = Http::delete($url);
+
+    if ($response->successful()) {
+        return response()->json(['message' => 'Usuario eliminado correctamente'], $response->status());
+    } else {
+        return response()->json(['error' => 'Error al eliminar usuario en el microservicio'], $response->status());
+    }
+}
 
 }

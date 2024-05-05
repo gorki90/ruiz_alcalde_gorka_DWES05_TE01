@@ -19,4 +19,14 @@ Route::put("/public/build/updatebuild/{id}","App\Http\Controllers\ControladorPag
 
 Route::delete("/public/build/deletebuild/{id}","App\Http\Controllers\ControladorPaginas@deleteBuild")->name("deleteBuild_ruta");//implementado
 
+//Routas del microservicio Java
 
+Route::get("/public/usuarios","App\Http\Controllers\ControladorPaginas@verAutores")->name("autor_ruta");
+
+Route::get("/public/usuarios/{id}","App\Http\Controllers\ControladorPaginas@verAutorId")->name("autor_id_ruta");
+
+Route::post("/public/usuarios/crear","App\Http\Controllers\ControladorPaginas@crearAutor")->name("crearAutor_ruta");
+
+Route::put("/public/usuarios/modificar/{id}","App\Http\Controllers\ControladorPaginas@modificarAutor")->name("modificarAutor_ruta");
+
+Route::delete("/public/usuarios/eliminar/{id}","App\Http\Controllers\ControladorPaginas@eliminarAutor")->name("eliminarAutor_ruta");
