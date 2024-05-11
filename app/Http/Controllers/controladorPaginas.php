@@ -175,6 +175,8 @@ public function crearbuild(){
 
     }
 
+
+ //Funciones para la inclusión del microservicio creado con Java   
 public function verAutores(){
     $url = 'http://localhost:8080/api/usuarios';
     $response = Http::get($url);
